@@ -67,9 +67,9 @@ Data formats include Shapefile (.shp, .shx, .dbf, .prj) and GeoJSON.
 
 ![](public/covarrubias.png)
 
-### [Placemark](https://play.placemark.io/)
+### Step 1: Capture your spatial data with [Placemark](https://play.placemark.io/)
 
-A spatial data editor which unfortunately was not commercially viable and was realeased as Open Source (and free!) by [Tom MacWright](https://macwright.com/).
+A spatial data editor which unfortunately was not commercially viable and was released as Open Source (and free!) by [Tom MacWright](https://macwright.com/).
 
 - Drag and drop, or click Import to upload your data.
 
@@ -81,39 +81,53 @@ A spatial data editor which unfortunately was not commercially viable and was re
 
 - You can use Geometry operations or click Buffer.
 
-- Export your Folders. GeoJSON is the easiest format to work with. It will also be easier later on if you separate your features by type.
+- Export your Folders. GeoJSON is the easiest format to work with. It will also be easier later on if you separate your features by type. If you don't do this you will need to use the `filter` option on Mapbox and add a _filtered_ layer for each type.
 
 **Warning**: The _undo_ functionality is partially broken. Be wary of doing operations that are destructive, and we recommend that you export your work regularly.
 
-#### Styling
+#### (Optional) Styling
 
-Placemark supports custom styling using the `fill` and `stroke` attributes to which you pass colours using hex codes (eg. `#58A4E8`).
+Placemark supports custom styling using the `fill` and `stroke` attributes to which you pass colours using hex codes (eg. `#58A4E8`) but best practice is to separate data from presentation styling, and we will normally style the map only on Mapbox, not on Placemark.
 
 ![](public/placemark-hex.png)
 
-Note that it's generally not considered best practice to mix data with its presentation styling.
+### Step 2: Create your map and style your data using [Mapbox Studio](https://www.mapbox.com/)
 
-### Mapbox Studio
+It's free to register to Mapbox but you will still need some card details.
 
-You will need to register for a (free) Mapbox account.
+#### Add your (custom) data
 
-First, add your custom data by creating a new Tileset (under the "Data manager menu").
+First, add your custom data by creating a new Tileset (under the "Data manager menu"). Your life will be easier if you add different types of features (i.e. points, lines and polygons) as different Tilesets. That way you can easily select the right style for each layer.
 
 ![](public/mapbox-new-tileset.png)
 
-The actual map is created as a Style (Mapbox' base layer). Create a new style (try a simple style and also try to use the dropdown menu to create a new style from a "Classic template")
+Make sure that you make your Tileset public. Click on the Share menu and toggle the visibility to public.
+
+![](public/mapbox-share-tileset.png)
+
+**Troubleshooting**: If you publish your map and only see the base layer without your data, then it's likely that the Tileset you are using is set to Private. Change the visibility to fix it.
+
+#### Create the map as a Style
+
+The actual map is created as a Style (Mapbox' base layer). Create a new style. You can try to add a simple style OR try to use the dropdown menu to create a new style from a "Classic template".
 
 ![](public/mapbox-new-style.png)
 
 Play around with the menus and customise the style of your map.
 
-When ready, you can add your data using Layers and change their style!
+Add your data using the + symbol on the Layers menu, and select your new Tilesets as the Source under the Select data pane (select the right type -circle, fill, etc.- for the right type of feature). Note that if you are working with a GeoJSON that has different types of features you will need to set a filter.
 
-![](public/mapbox-edit-style.png)
+![](public/mapbox-add-layer.png)
 
-NB: if you have different geometry types in your Tileset then you will need to use a filter like so:
+### Step 3: Get your map out into the real world
 
-![](public/mapbox-filter.png)
+When you are ready to share your map with the whole world, click on the Share button.
+
+The easiest way to take your map with you elsewhere is to embed in a website. You can create your own website, for example with [cargo.site](cargo.site), and you add the `<iframe ...>` string (see the screenshot below) to the source file of your website.
+
+![](public/mapbox-publish.png)
+
+**NB**: Clicking on Publish updates the Production version of your map, use the Draft for faster iterations until you are happy with the result.
 
 ## Now it's your turn!
 
